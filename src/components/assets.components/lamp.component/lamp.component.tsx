@@ -25,9 +25,9 @@ function LampComponent(props:LampComponentProps) {
         className="lamp" 
         style={{
             display: "block",
-            background: `no-repeat url(${isLampOn ? lampOnImg : lampOffImg}) 0% 0% / auto 50px`,
-            height: "50px",
-            width: "30px"
+            background: `no-repeat url(${isLampOn ? lampOnImg : lampOffImg}) 0% 0% / auto 200px`,
+            height: "200px",
+            width: "160px"
         }}>
 
         </span>

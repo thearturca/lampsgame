@@ -21,7 +21,7 @@ function LampsContainerComponent(props: LampsContainerComponentProps) {
         height: "400px"
     }}>
         <div>
-            lamp #{props.currentLamp+1}
+            Кликай, чтобы вкл/выкл лампочку
             <LampComponent key={props.currentLamp} isOn={props.lamps[props.currentLamp].isOn} onToggleLamp={() => toggleLamp(props.currentLamp)}></LampComponent>
         </div>
     </div>

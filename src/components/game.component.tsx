@@ -24,6 +24,11 @@ function GameComponent() {
     return setLamps(generateLamps());
   }
 
+  const handleSubmitAnswer = (answer: number): boolean => {
+    if (answer === lamps.length) return true;
+    return false;
+  }
+
   const generateLamps = (): LampEntity[] => {
     let lamps: LampEntity[] = []; 
     const lampsNumber = 10 + Math.floor(Math.random() * 10);
@@ -31,16 +36,25 @@ function GameComponent() {
         const rng = Math.random();
         lamps.push(new LampEntity(rng > 0.5 ? true : false))
     }
+    
     return lamps;
   }
 
   const [lamps, setLamps] = useState<LampEntity[]>(generateLamps());
   const [lampNum, setLampNum] = useState<number>(0);
 
+  console.log(`ans is ${lamps.length}`);
+
   return (
     <div className="game">
-      <LampsContainerComponent lamps={lamps} currentLamp={lampNum}></LampsContainerComponent>
-      <GameControlsComponent prevLamp={handlePrevLamp} nextLamp={handleNextLamp} resetLamps={handleResetLamps}></GameControlsComponent>
+      <LampsContainerComponent lamps={ lamps } currentLamp={ lampNum }></LampsContainerComponent>
+      <GameControlsComponent
+       prevLamp={ handlePrevLamp } 
+       nextLamp={ handleNextLamp } 
+       resetLamps={ handleResetLamps }
+       submitAnswer={ handleSubmitAnswer }
+       >
+       </GameControlsComponent>
     </div>
   )
 }
