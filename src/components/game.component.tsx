@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import GameControlsComponent from "./assets.components/lamp.component/game-controls.component/game-controls.component"
 import { LampEntity } from "./assets.components/lamp.component/lamp.entity";
-import LampsContainerComponent from "./lamps-container.component/lamps-container.component"
+import LampsContainerComponent from "./lamps-container.component/lamps-container.component";
+import "./game.component.css";
 
 interface GameComponentProps {
   switchTheme(theme: string): void;
@@ -36,7 +37,7 @@ function GameComponent(props: GameComponentProps) {
   const generateLamps = (): LampEntity[] => {
     let lamps: LampEntity[] = []; 
     const lampsNumber = 10 + Math.floor(Math.random() * 10);
-    
+
     for(let i=1; i<lampsNumber; i++) {
         const rng = Math.random();
         lamps.push(new LampEntity(rng > 0.5 ? true : false))
@@ -61,6 +62,7 @@ function GameComponent(props: GameComponentProps) {
 
   return (
     <div className="game">
+      <h1 className="game-title">Lamp Game</h1>
       <LampsContainerComponent lamps={ lamps } currentLamp={ lampNum } onToggleLamp={ handleUpdateLamp }></LampsContainerComponent>
       <GameControlsComponent
        prevLamp={ handlePrevLamp } 

@@ -48,9 +48,11 @@ class GameControlsComponent extends React.Component<GameControlsComponentProps, 
     render() {
         return (
             <>
-                <span onClick={() => this.handleClickPrevLamp()}>prev</span>
-                <span style={{marginLeft: "10px"}} onClick={() => this.handleClickNextLamp()}>next</span>
-                <div>
+                <div className="lamps-controls">
+                    <span onClick={() => this.handleClickPrevLamp()}>prev</span>
+                    <span style={{marginLeft: "10px"}} onClick={() => this.handleClickNextLamp()}>next</span>
+                </div>
+                <div className="answer-form">
                     <span onClick={() => this.handleClickResetLamp()}>reset</span>
                     <input type="text" placeholder="Ответ" onChange={(e) => this.handleAnswerOnChange(e)}/> 
                     <button onClick={() => this.handleClickAnswer()}>Ответ</button>

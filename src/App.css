@@ -5,4 +5,13 @@
     color: var(--text-primary);
     background: var(--background);
     transition: all .5s;
+    /* padding-top: 50px;
+    padding-left: 50px; */
+    padding: 50px 50px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
 }

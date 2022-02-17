@@ -5,5 +5,23 @@
     flex-direction: column;
     width: 600px;
     height: 400px;
-    /* background-color: #000; */
+}
+
+.lamp-hint {
+    margin-bottom: 30px;
+    font-weight: 400;
+    font-size: 24px;
+    text-align: center;
+}
+
+.lamp-state {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: 600;
+}
+
+.lamp-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
