@@ -1,4 +1,4 @@
-import React, { SyntheticEvent } from "react";
+import React from "react";
 
 interface GameControlsComponentProps {
     prevLamp(): void;
@@ -52,9 +52,10 @@ class GameControlsComponent extends React.Component<GameControlsComponentProps, 
                 <span style={{marginLeft: "10px"}} onClick={() => this.handleClickNextLamp()}>next</span>
                 <div>
                     <span onClick={() => this.handleClickResetLamp()}>reset</span>
-                    <input type="text" placeholder="Ответ" onChange={(e) => this.handleAnswerOnChange(e)}/> <button onClick={() => this.handleClickAnswer()}>Ответ</button>
+                    <input type="text" placeholder="Ответ" onChange={(e) => this.handleAnswerOnChange(e)}/> 
+                    <button onClick={() => this.handleClickAnswer()}>Ответ</button>
                 </div>
-                <span>{this.state.hasWos ? "Вы выиграли!" : "Попробуй отгадать, сколько здесь лампочек!"}</span>
+                <span>{this.state.hasWos ? "Вы выиграли!" : "Попробуй посчитать сколько здесь всего лампочек!"}</span>
             </>
           )
     }
