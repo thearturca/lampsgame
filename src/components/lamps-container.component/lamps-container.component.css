@@ -25,3 +25,24 @@
     align-items: center;
     justify-content: center;
 }
+
+.lamp-left-enter {
+    margin-right: 150px;
+}
+
+.lamp-left-exit {
+    margin-right: 0;
+}
+
+.lamp-left-enter-active {
+    margin-right: 150px;
+}
+
+.lamp-left-exit-active {
+    margin-right: 0;
+}
+
+.lamp-left-enter,
+.lamp-left-exit {
+    transition: all 1s;
+}

@@ -2,6 +2,7 @@ import { SyntheticEvent, useState } from "react"
 import lampOffImg from "./img/lamp-off.png"
 import lampOnImg from "./img/lamp-on.png"
 import { LampEntity } from "./lamp.entity"
+import "./lamp.component.css"
 
 interface LampComponentProps {
     isOn: boolean;
@@ -20,17 +21,16 @@ function LampComponent(props:LampComponentProps) {
 
     const [isLampOn, setLamp] = useState<boolean>(lamp.isOn);
     return (
-        <span 
-        onClick={ handleLampOnClick } 
-        className="lamp" 
-        style={{
-            display: "block",
-            background: `no-repeat url(${ isLampOn ? lampOnImg : lampOffImg }) 0% 0% / auto 200px`,
-            height: "200px",
-            width: "133px"
-        }}>
-
-        </span>
+            <span 
+            onClick={ handleLampOnClick } 
+            className="lamp" 
+            style={{
+                display: "block",
+                background: `no-repeat url(${ isLampOn ? lampOnImg : lampOffImg }) 0% 0% / auto 200px`,
+                height: "200px",
+                width: "133px"
+            }}>
+            </span>
   )
 }
 

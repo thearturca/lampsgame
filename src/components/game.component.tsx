@@ -15,6 +15,7 @@ function GameComponent(props: GameComponentProps) {
         return setLampNum(lamps.length-1);
     }
     setLampNum(lampNum-1);
+    setIsNext(false);
   }
 
   const handleNextLamp = () => {
@@ -22,6 +23,7 @@ function GameComponent(props: GameComponentProps) {
         return setLampNum(0);
     }
     setLampNum(lampNum+1);
+    setIsNext(true);
   }
 
   const handleResetLamps = () => {
@@ -52,6 +54,7 @@ function GameComponent(props: GameComponentProps) {
   
   const [lamps, setLamps] = useState<LampEntity[]>(generateLamps());
   const [lampNum, setLampNum] = useState<number>(0);
+  const [isNext, setIsNext] = useState<boolean>(true)
   
   useEffect(() => {
     handleUpdateLamp(lampNum)
@@ -63,7 +66,7 @@ function GameComponent(props: GameComponentProps) {
   return (
     <div className="game">
       <h1 className="game-title">Lamp Game</h1>
-      <LampsContainerComponent lamps={ lamps } currentLamp={ lampNum } onToggleLamp={ handleUpdateLamp }></LampsContainerComponent>
+      <LampsContainerComponent isNext={isNext} lamps={ lamps } currentLamp={ lampNum } onToggleLamp={ handleUpdateLamp }></LampsContainerComponent>
       <GameControlsComponent
        prevLamp={ handlePrevLamp } 
        nextLamp={ handleNextLamp } 

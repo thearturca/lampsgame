@@ -1,4 +1,5 @@
 import React from "react";
+import "./game-controls.component.css"
 
 interface GameControlsComponentProps {
     prevLamp(): void;
@@ -37,7 +38,6 @@ class GameControlsComponent extends React.Component<GameControlsComponentProps, 
 
     handleClickAnswer() {
         if (this.props.submitAnswer(this.state.answer)) this.setState({...this.state, hasWos: true})
-        
     }
 
     handleAnswerOnChange(e: React.ChangeEvent<HTMLInputElement> ) {
@@ -49,8 +49,8 @@ class GameControlsComponent extends React.Component<GameControlsComponentProps, 
         return (
             <>
                 <div className="lamps-controls">
-                    <span onClick={() => this.handleClickPrevLamp()}>prev</span>
-                    <span style={{marginLeft: "10px"}} onClick={() => this.handleClickNextLamp()}>next</span>
+                    <span onClick={() => this.handleClickPrevLamp()} className="prev">prev</span>
+                    <span onClick={() => this.handleClickNextLamp()} className="next">next</span>
                 </div>
                 <div className="answer-form">
                     <span onClick={() => this.handleClickResetLamp()}>reset</span>

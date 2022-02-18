@@ -1,0 +1,22 @@
+.lamps-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lamps-controls .prev, .next {
+    border: 2px solid var(--text-primary);
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-weight: 700;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.lamps-controls .prev {
+    margin-right: 50px;
+}
+
+.lamps-controls .next {
+
+}
