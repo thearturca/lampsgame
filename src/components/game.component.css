@@ -5,5 +5,7 @@
 }
 
 .game-title {
-    grid: 3;
+    width: 100vw;
+    padding-left: 50px;
+    margin-top: 50px;
 }

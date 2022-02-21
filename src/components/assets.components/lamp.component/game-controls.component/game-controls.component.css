@@ -1,22 +1,88 @@
+.Btn {
+    cursor: pointer;
+    background: var(--background);
+    border: 1px solid var(--text-primary);
+    border-radius: 8px;
+    padding: 8px 20px;
+    color: var(--text-primary);
+    text-align: center;
+    font-weight: 700;
+    font-size: 20px;
+    text-decoration: none;
+    user-select: none;
+    transition: all .5s
+}
+
+.Btn:hover {
+    background: var(--text-primary);
+    color: var(--background);
+}
+
+.game-controls {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
 .lamps-controls {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
 
-.lamps-controls .prev, .next {
-    border: 2px solid var(--text-primary);
-    border-radius: 6px;
-    padding: 10px 20px;
-    font-weight: 700;
-    font-size: 20px;
-    text-decoration: none;
+.lamps-controls .prevBtn, .nextBtn {
+    width: 30%;
 }
 
-.lamps-controls .prev {
+.lamps-controls .prevBtn {
     margin-right: 50px;
 }
 
-.lamps-controls .next {
+.resetBtn {
+    border: none;
+    margin: 20px 0;
+    text-align: center;
+    padding: 20px;
+    width: auto;
+    cursor: pointer;
+    background: var(--background);
+    color: var(--text-primary);
+    text-align: center;
+    font-weight: 700;
+    font-size: 20px;
+    text-decoration: none;
+    user-select: none;
+    transition: all .5s
+}
 
+.resetBtn:hover {
+    text-decoration: underline;
+}
+
+.text {
+    margin-top: 35px;
+}
+
+.answer-form {
+    margin: 15px 0;
+}
+
+.answer-form .answerInput {
+    border: 1px solid var(--text-primary);
+    border-radius: 8px;
+    font-size: 20px;
+    background: none;
+    color: var(--text-primary);
+    padding: 8px 20px;
+}
+
+.answer-form .submitAnswerBtn{
+    background: var(--text-primary);
+    color: var(--background);
+    margin: 0 15px;
+}
+
+.answer-form .submitAnswerBtn:hover {
+    opacity: 0.5;
 }

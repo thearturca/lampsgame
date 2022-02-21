@@ -3,7 +3,6 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 600px;
     height: 400px;
 }
 
@@ -27,18 +26,22 @@
 }
 
 .lamp-left-enter {
+    opacity: 1;
     margin-right: 150px;
 }
 
 .lamp-left-exit {
+    opacity: 0;
     margin-right: 0;
 }
 
 .lamp-left-enter-active {
+    opacity: 1;
     margin-right: 150px;
 }
 
 .lamp-left-exit-active {
+    opacity: 0;
     margin-right: 0;
 }
 

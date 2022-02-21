@@ -11,8 +11,8 @@ function App() {
   }
 
   return (
-    <div className="App" data-theme={theme}>
-      <GameComponent switchTheme={switchTheme}></GameComponent>
+    <div className="App" data-theme={ theme }>
+      <GameComponent switchTheme={ switchTheme }></GameComponent>
     </div>
   );
 }

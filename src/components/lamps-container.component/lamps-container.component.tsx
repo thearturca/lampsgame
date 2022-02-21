@@ -23,13 +23,13 @@ function LampsContainerComponent(props: LampsContainerComponentProps) {
     
   return (
     <div className="lamps-container">
-        <span className="lamp-hint">Кликай, чтобы вкл/выкл лампочку</span>
+        <span className="lamp-hint">Кликай, чтобы вкл/выкл лампочку {`# ${props.currentLamp+1}`}</span>
           <div className="lamp-wrapper">
-            {/* <SwitchTransition> */}
-              {/* <CSSTransition key={props.currentLamp} addEndListener={(node, done) => node.addEventListener("transitioned", done, false)} classNames="lamp-left"> */}
+            <SwitchTransition mode="in-out">
+              <CSSTransition key={props.currentLamp} addEndListener={(node, done) => node.addEventListener("transitionend", done, false)} classNames="lamp-left">
                 <LampComponent key={props.currentLamp} isOn={props.lamps[props.currentLamp].isOn} onToggleLamp={() => toggleLamp(props.currentLamp)}></LampComponent>
-              {/* </CSSTransition> */}
-            {/* </SwitchTransition> */}
+              </CSSTransition>
+            </SwitchTransition>
           </div>
         <span className="lamp-state">{props.lamps[props.currentLamp].isOn ? "Лампочка вкл" : "Лампочка выкл"}</span>
     </div>

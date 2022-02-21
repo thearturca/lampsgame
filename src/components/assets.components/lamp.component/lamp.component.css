@@ -2,3 +2,7 @@
     transition: all .3s;
 }
 
+.lamp:hover {
+    transform: scale(1.05);
+}
+
