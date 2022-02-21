@@ -27,7 +27,7 @@
 
 .lamp-left-enter {
     opacity: 1;
-    margin-right: 150px;
+    margin-right: 1500px;
 }
 
 .lamp-left-exit {
@@ -36,16 +36,16 @@
 }
 
 .lamp-left-enter-active {
-    opacity: 1;
-    margin-right: 150px;
-}
-
-.lamp-left-exit-active {
     opacity: 0;
     margin-right: 0;
 }
 
+.lamp-left-exit-active {
+    opacity: 1;
+    margin-right: 150px;
+}
+
 .lamp-left-enter,
 .lamp-left-exit {
-    transition: all 1s;
+    transition: all 0.5s;
 }
