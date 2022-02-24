@@ -1,4 +1,4 @@
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import "./game-controls.component.css"
 
 interface GameControlsComponentProps {
@@ -21,6 +21,19 @@ class GameControlsComponent extends React.Component<GameControlsComponentProps, 
             answer: 0,
             hasWos: false
         };
+    }
+
+    handleOnKeyDown(e:React.KeyboardEvent<HTMLDivElement>) {
+        e.preventDefault();
+        switch(e.key) {
+            case "ArrowLeft":
+                this.handleClickPrevLamp();
+                break;
+
+            case "ArrowRight":
+                this.handleClickNextLamp();
+                break;
+        }
     }
 
     handleClickPrevLamp() {
@@ -47,12 +60,12 @@ class GameControlsComponent extends React.Component<GameControlsComponentProps, 
 
     render() {
         return (
-            <div className="game-controls">
+            <div className="game-controls" onKeyDown={(e) => this.handleOnKeyDown(e)}>
                 <div className="lamps-controls">
                     <span onClick={() => this.handleClickPrevLamp()} className="prevBtn Btn">prev</span>
                     <span onClick={() => this.handleClickNextLamp()} className="nextBtn Btn">next</span>
                 </div>
-                <span className="text">{this.state.hasWos ? "Вы выиграли!" : "Попробуй посчитать сколько здесь всего лампочек!"}</span>
+                <span className="text">{this.state.hasWos ? "Вы выиграли!" : "Посчитай сколько здесь лампочек, и дай свой ответ"}</span>
                 <div className="answer-form">
                     <input type="text" placeholder="Ответ" onChange={(e) => this.handleAnswerOnChange(e)} className="answerInput"/> 
                     <button onClick={() => this.handleClickAnswer()} className="submitAnswerBtn Btn">Ответ</button>
