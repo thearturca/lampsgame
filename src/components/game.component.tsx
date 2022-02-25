@@ -33,7 +33,7 @@ function GameComponent(props: GameComponentProps) {
   
   const [lamps, setLamps] = useState<LampEntity[]>(generateLamps());
   const [lampNum, setLampNum] = useState<number>(0);
-  const [isNext, setIsNext] = useState<boolean>(true)
+  const [isNext, setIsNext] = useState<boolean>(false)
   
   const handlePrevLamp = useCallback(() => {
     if (lampNum <= 0) {
