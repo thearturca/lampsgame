@@ -9,48 +9,41 @@ interface GameComponentProps {
 }
 
 function GameComponent(props: GameComponentProps) {
-
-  const handleResetLamps = useCallback(() => {
-    setLampNum(0);
-    return setLamps(generateLamps());
-  },[])
   
   const generateLamps = (): LampEntity[] => {
     let lamps: LampEntity[] = []; 
     const lampsNumber = 10 + Math.floor(Math.random() * 10);
-    
     for(let i=1; i<lampsNumber; i++) {
       const rng = Math.random();
       lamps.push(new LampEntity(rng > 0.5 ? true : false))
-    }
-    
+    };
     return lamps;
-  }
-  
-  const handleUpdateLamp = (i: number) => {
-    props.switchTheme(lamps[i].isOn ? "light" : "dark")
   }
   
   const [lamps, setLamps] = useState<LampEntity[]>(generateLamps());
   const [lampNum, setLampNum] = useState<number>(0);
   const [isNext, setIsNext] = useState<boolean>(false)
   
+  const handleUpdateLamp = (i: number) => {
+    props.switchTheme(lamps[i].isOn ? "light" : "dark")
+  };
+  
   const handlePrevLamp = useCallback(() => {
+    setIsNext(false);
     if (lampNum <= 0) {
       return setLampNum(lamps.length-1);
     }
     setLampNum(lampNum-1);
-    setIsNext(false);
-  }, [lampNum]);
+  }, [lampNum, lamps]);
   
   const handleNextLamp = useCallback(() => {
+    setIsNext(true);
     if (lampNum >= lamps.length-1) {
       return setLampNum(0);
     }
     setLampNum(lampNum+1);
-    setIsNext(true);
-  }, [lampNum]);
-
+  }, [lampNum, lamps]);
+  
   const handleSubmitAnswer = useCallback((answer: number): boolean => {
     if (answer === lamps.length) { 
       handleResetLamps();
@@ -59,16 +52,21 @@ function GameComponent(props: GameComponentProps) {
     return false;
   }, [lamps]);
   
+  const handleResetLamps = useCallback(() => {
+    setLamps(generateLamps());
+    setLampNum(0);
+    return ;
+  },[lamps])
+
   useEffect(() => {
     handleUpdateLamp(lampNum)
   }, [lampNum]);
-  
   
   console.log(`ans is ${ lamps.length }`);
   
   return (
     <div className="game">
-      <h1 className="game-title">Lamp Game</h1>
+      <h1 className="game-title">Lamps Game</h1>
       <LampsContainerComponent isNext={ isNext } lamps={ lamps } currentLamp={ lampNum } onToggleLamp={ handleUpdateLamp }></LampsContainerComponent>
       <GameControlsComponent
        prevLamp={ handlePrevLamp } 
