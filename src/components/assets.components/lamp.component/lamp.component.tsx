@@ -16,7 +16,7 @@ function LampComponent(props:LampComponentProps) {
         e.preventDefault();
         lamp.toggleLamp();
         setLamp(lamp.isOn);
-        props.onToggleLamp()
+        props.onToggleLamp();
     }
 
     const [isLampOn, setLamp] = useState<boolean>(lamp.isOn);
@@ -28,7 +28,7 @@ function LampComponent(props:LampComponentProps) {
                 display: "block",
                 background: `no-repeat url(${ isLampOn ? lampOnImg : lampOffImg }) 0% 0% / auto 200px`,
                 height: "200px",
-                width: "133px"
+                width: "134px"
             }}>
             </span>
   )

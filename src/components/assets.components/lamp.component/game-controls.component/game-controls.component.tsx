@@ -1,4 +1,4 @@
-import React, { SyntheticEvent } from "react";
+import React from "react";
 import "./game-controls.component.css"
 
 interface GameControlsComponentProps {
@@ -60,12 +60,12 @@ class GameControlsComponent extends React.Component<GameControlsComponentProps, 
 
     render() {
         return (
-            <div className="game-controls" onKeyDown={(e) => this.handleOnKeyDown(e)}>
+            <div className="game-controls" >
                 <div className="lamps-controls">
                     <span onClick={() => this.handleClickPrevLamp()} className="prevBtn Btn">prev</span>
                     <span onClick={() => this.handleClickNextLamp()} className="nextBtn Btn">next</span>
                 </div>
-                <span className="text">{this.state.hasWos ? "Вы выиграли!" : "Посчитай сколько здесь лампочек, и дай свой ответ"}</span>
+                <span className="text">{this.state.hasWos ? "Вы выиграли!" : "Посчитай сколько здесь лампочек"}</span>
                 <div className="answer-form">
                     <input type="text" placeholder="Ответ" onChange={(e) => this.handleAnswerOnChange(e)} className="answerInput"/> 
                     <button onClick={() => this.handleClickAnswer()} className="submitAnswerBtn Btn">Ответ</button>

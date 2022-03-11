@@ -24,9 +24,9 @@ function GameComponent(props: GameComponentProps) {
   const [lampNum, setLampNum] = useState<number>(0);
   const [isNext, setIsNext] = useState<boolean>(false)
   
-  const handleUpdateLamp = (i: number) => {
+  const handleUpdateLamp = useCallback((i: number) => {
     props.switchTheme(lamps[i].isOn ? "light" : "dark")
-  };
+  }, [lamps, props]);
   
   const handlePrevLamp = useCallback(() => {
     setIsNext(false);
@@ -44,23 +44,28 @@ function GameComponent(props: GameComponentProps) {
     setLampNum(lampNum+1);
   }, [lampNum, lamps]);
   
+  
+  const handleResetLamps = useCallback(() => {
+    setLamps(generateLamps());
+    let rng = 0;
+    while (rng === lampNum) {
+      rng = Math.floor(Math.random() * (lamps.length-1));
+    }
+    setLampNum(rng)
+    handleUpdateLamp(lampNum);
+  },[lamps, lampNum, handleUpdateLamp])
+  
   const handleSubmitAnswer = useCallback((answer: number): boolean => {
     if (answer === lamps.length) { 
       handleResetLamps();
       return true
     };
     return false;
-  }, [lamps]);
-  
-  const handleResetLamps = useCallback(() => {
-    setLamps(generateLamps());
-    setLampNum(0);
-    return ;
-  },[lamps])
+  }, [lamps, handleResetLamps]);
 
   useEffect(() => {
     handleUpdateLamp(lampNum)
-  }, [lampNum]);
+  }, [lampNum, handleUpdateLamp]);
   
   console.log(`ans is ${ lamps.length }`);
   

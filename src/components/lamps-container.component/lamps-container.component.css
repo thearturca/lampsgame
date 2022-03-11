@@ -58,7 +58,7 @@
 .lamp-left-enter,
 .lamp-left-exit {
     position: absolute;
-    transition: margin-right, opacity .2s;
+    transition: margin-right, opacity .1s;
 }
 
 .lamp-right-enter {
@@ -83,5 +83,5 @@
 .lamp-right-enter,
 .lamp-right-exit {
     position: absolute;
-    transition: margin-left, opacity .2s;
+    transition: margin-left, opacity .1s;
 }
