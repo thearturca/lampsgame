@@ -47,11 +47,11 @@ function GameComponent(props: GameComponentProps) {
   
   const handleResetLamps = useCallback(() => {
     setLamps(generateLamps());
-    let rng = 0;
-    while (rng === lampNum) {
-      rng = Math.floor(Math.random() * (lamps.length-1));
-    }
-    setLampNum(rng)
+    // let rng = 0;
+    // while (rng === lampNum) {
+    //   rng = Math.floor(Math.random() * (lamps.length-1));
+    // }
+    setLampNum(0)
     handleUpdateLamp(lampNum);
   },[lamps, lampNum, handleUpdateLamp])
   

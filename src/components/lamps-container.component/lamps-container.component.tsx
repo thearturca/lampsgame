@@ -27,7 +27,7 @@ function LampsContainerComponent(props: LampsContainerComponentProps) {
           <div className="lamp-wrapper">
             <SwitchTransition mode="in-out">
               <CSSTransition key={props.currentLamp + (props.isNext ? +1 : -1)} addEndListener={(node, done) => node.addEventListener("transitionend", done, false)} classNames={props.isNext ? "lamp-left" : "lamp-right"}>
-                <LampComponent key={props.currentLamp} isOn={props.lamps[props.currentLamp].isOn} onToggleLamp={() => toggleLamp(props.currentLamp)}></LampComponent>
+                <LampComponent key={props.currentLamp} lamp={props.lamps[props.currentLamp]} onToggleLamp={() => toggleLamp(props.currentLamp)}></LampComponent>
               </CSSTransition>
             </SwitchTransition>
           </div>
