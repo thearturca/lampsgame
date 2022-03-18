@@ -16,7 +16,6 @@ interface GameControlsComponentStates {
 class GameControlsComponent extends React.Component<GameControlsComponentProps, GameControlsComponentStates>{
     constructor(props: GameControlsComponentProps) {
         super(props)
-
         this.state  = {
             answer: 0,
             hasWos: false

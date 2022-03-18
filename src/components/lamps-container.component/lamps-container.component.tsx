@@ -1,7 +1,7 @@
-import { useState } from "react";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
 import LampComponent from "../assets.components/lamp.component/lamp.component";
 import { LampEntity } from "../assets.components/lamp.component/lamp.entity";
+import ModalComponent from "../modal.component/modal.component";
 import "./lamps-container.component.css"
 
 interface LampsContainerComponentProps {
@@ -29,6 +29,9 @@ function LampsContainerComponent(props: LampsContainerComponentProps) {
             </SwitchTransition>
           </div>
         <span className="lamp-state">{props.lamps[props.currentLamp].isOn ? "Лампочка вкл" : "Лампочка выкл"}</span>
+        <ModalComponent>
+          <p>123123123</p>
+        </ModalComponent>
     </div>
   )
 }
