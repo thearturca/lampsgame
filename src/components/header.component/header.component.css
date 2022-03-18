@@ -1,0 +1,51 @@
+.game-header {
+    width: 100vw;
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.game-title {
+    padding-left: 50px;
+}
+
+.header-btn {
+    padding-right: 50px;
+    border: none;
+    text-align: center;
+    width: auto;
+    cursor: pointer;
+    background: var(--background);
+    color: var(--text-primary);
+    text-align: center;
+    font-weight: 700;
+    font-size: 20px;
+    text-decoration: none;
+    user-select: none;
+    transition: all .5s
+}
+
+.header-btn:hover {
+    text-decoration: underline;
+}
+
+.settings-difficulty {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    font-size: 22px;
+}
+
+.settings-difficulty input {
+    display: none;
+}
+
+.settings-difficulty label {
+    padding: 10px;
+}
+
+.settings-difficulty label:has(input:checked) {
+    background-color: var(--text-primary);
+    columns: var(--background);
+    font-weight: 700;
+}
