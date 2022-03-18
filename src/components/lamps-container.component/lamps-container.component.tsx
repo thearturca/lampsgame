@@ -15,12 +15,9 @@ function LampsContainerComponent(props: LampsContainerComponentProps) {
 
     const toggleLamp = (i: number) => {
         props.lamps[i].toggleLamp();
-        setCurrentLampState(props.lamps[i].isOn);
         props.onToggleLamp(props.currentLamp);
     }
 
-    const [currentLampState, setCurrentLampState] = useState<boolean>(props.lamps[props.currentLamp].isOn);
-    
   return (
     <div className="lamps-container">
         <span className="lamp-hint">Кликай, чтобы вкл/выкл лампочку {`# ${props.currentLamp+1}`}</span>

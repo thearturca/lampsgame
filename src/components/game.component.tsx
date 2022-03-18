@@ -47,13 +47,9 @@ function GameComponent(props: GameComponentProps) {
   
   const handleResetLamps = useCallback(() => {
     setLamps(generateLamps());
-    // let rng = 0;
-    // while (rng === lampNum) {
-    //   rng = Math.floor(Math.random() * (lamps.length-1));
-    // }
-    setLampNum(0)
+    setLampNum(0);
     handleUpdateLamp(lampNum);
-  },[lamps, lampNum, handleUpdateLamp])
+  },[lampNum, handleUpdateLamp])
   
   const handleSubmitAnswer = useCallback((answer: number): boolean => {
     if (answer === lamps.length) { 
