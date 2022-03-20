@@ -1,6 +1,7 @@
 import GameComponent from './components/game.component';
 import "./App.css"
 import { useLocalStorage } from 'usehooks-ts';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
 
@@ -12,7 +13,10 @@ function App() {
 
   return (
     <div className="App" data-theme={ theme }>
-      <GameComponent switchTheme={ switchTheme }></GameComponent>
+      <Routes>
+        <Route path="/" element={ <GameComponent switchTheme={ switchTheme }/> }> 
+        </Route>
+      </Routes>
     </div>
   );
 }

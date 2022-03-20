@@ -28,24 +28,3 @@
 .header-btn:hover {
     text-decoration: underline;
 }
-
-.settings-difficulty {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-    font-size: 22px;
-}
-
-.settings-difficulty input {
-    display: none;
-}
-
-.settings-difficulty label {
-    padding: 10px;
-}
-
-.settings-difficulty label:has(input:checked) {
-    background-color: var(--text-primary);
-    columns: var(--background);
-    font-weight: 700;
-}
