@@ -13,16 +13,17 @@ export interface SettingsComponentProps {
 function SettingsComponent(props: SettingsComponentProps) {
     const navigate: NavigateFunction = useNavigate();
     const onClose = () => {
-        props.setActive(false);
         navigate(-1);
+        props.setActive(false);
     }
   return (
-    <ModalComponent active={props.active} setActive={props.setActive}>
+    <ModalComponent active={props.active} onClose={onClose}>
             <header className="modal-header">
                 <h1>Настройки</h1>
+                <button className="btn-close" onClick={ onClose }>X</button>
             </header>
             <main className="modal-main">
-                <h2>Сложность {props.difficultyState}</h2>
+                <h2>Сложность</h2>
                 <div className="settings-difficulty">
                     <label className={props.difficultyState === difficulty.easy ? "active" : ""}>
                         <input 

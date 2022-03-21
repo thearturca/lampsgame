@@ -5,13 +5,11 @@ import "./header.component.css"
 interface HeaderComponentProps {
     showModal(): void;
     difficultyState: difficulty;
-    setDifficultyState(difficulty:difficulty): void;
 }
 
 function HeaderComponent(props: HeaderComponentProps) {
 
     const handleOnClickSettingsBtn = () => {
-
         props.showModal();
     }
 

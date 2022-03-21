@@ -9,7 +9,7 @@ interface GameControlsComponentProps {
 }
 
 interface GameControlsComponentStates {
-    answer: number;
+    answer: string;
     hasWos: boolean;
 }
 
@@ -17,7 +17,7 @@ class GameControlsComponent extends React.Component<GameControlsComponentProps, 
     constructor(props: GameControlsComponentProps) {
         super(props)
         this.state  = {
-            answer: 0,
+            answer: "",
             hasWos: false
         };
     }
@@ -45,16 +45,19 @@ class GameControlsComponent extends React.Component<GameControlsComponentProps, 
 
     handleClickResetLamp() {
         this.props.resetLamps();
-        this.setState({...this.state, hasWos: false})
+        this.setState({...this.state, hasWos: false, answer: ""})
     }
 
     handleClickAnswer() {
-        if (this.props.submitAnswer(this.state.answer)) this.setState({...this.state, hasWos: true})
+        if (this.props.submitAnswer(parseInt( this.state.answer))) {
+            this.setState({...this.state, hasWos: true, answer: ""});
+
+        }
     }
 
     handleAnswerOnChange(e: React.ChangeEvent<HTMLInputElement> ) {
         e.preventDefault();
-        this.setState({answer: +e.target.value});
+        this.setState({...this.state, answer: e.target.value});
     }
 
     render() {
@@ -64,9 +67,14 @@ class GameControlsComponent extends React.Component<GameControlsComponentProps, 
                     <span onClick={() => this.handleClickPrevLamp()} className="prevBtn Btn">prev</span>
                     <span onClick={() => this.handleClickNextLamp()} className="nextBtn Btn">next</span>
                 </div>
-                <span className="text">{this.state.hasWos ? "Вы выиграли!" : "Посчитай сколько здесь лампочек"}</span>
+                <span className="text">{ "Посчитай сколько здесь лампочек" }</span>
                 <div className="answer-form">
-                    <input type="text" placeholder="Ответ" onChange={(e) => this.handleAnswerOnChange(e)} className="answerInput"/> 
+                    <input 
+                        type="text" 
+                        placeholder="Ответ" 
+                        onChange={(e) => this.handleAnswerOnChange(e)} 
+                        className="answerInput" 
+                        value={this.state.answer}/> 
                     <button onClick={() => this.handleClickAnswer()} className="submitAnswerBtn Btn">Ответ</button>
                 </div>
                 <span onClick={() => this.handleClickResetLamp()} className="resetBtn">reset</span>

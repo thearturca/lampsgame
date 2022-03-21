@@ -3,7 +3,7 @@ import "./modal.component.css"
 
 interface ModalComponentProps {
     active: boolean;
-    setActive(isActive:boolean): void;
+    onClose(): void;
     children?: React.ReactNode;
 }
 
@@ -14,17 +14,17 @@ function ModalComponent(props: ModalComponentProps) {
 
   return (
     <PortalComponent>
-    <div className="modal">
-        <div 
-          className="modal-overlay"
-          role="button"
-          tabIndex={0}
-          onClick={() => props.setActive(false)}
-        />
-        <div className="modal-content">
-            { props.children }
-        </div>
-    </div>
+      <div className="modal" role="dialog">
+          <div 
+            className={`modal-overlay ${props.active ? "active": ""}`}
+            role="button"
+            tabIndex={0}
+            onClick={() => props.onClose()}
+          />
+          <div className={`modal-content ${props.active ? "active" : ""}`}>
+              { props.children }
+          </div>
+      </div>
     </PortalComponent>
   )
 }

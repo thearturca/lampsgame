@@ -13,7 +13,7 @@ function PortalComponent(props: PortalComponentProps) {
         return () => {
             document.body.removeChild(container)
         };
-    }, [])
+    }, [container])
     return ReactDOM.createPortal(props.children, container)
 }
 

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { PathMatch, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import GameControlsComponent from "./game-controls.component/game-controls.component"
 import { LampEntity } from "./assets.components/lamp.component/lamp.entity";
@@ -7,6 +7,7 @@ import LampsContainerComponent from "./lamps-container.component/lamps-container
 import HeaderComponent from "./header.component/header.component";
 import SettingsComponent from "./settings.component/settings.component";
 import "./game.component.css";
+import CongratsComponent from "./congrats.component/congrats.component";
 
 interface GameComponentProps {
   switchTheme(theme: string): void;
@@ -23,10 +24,10 @@ function GameComponent(props: GameComponentProps) {
   const [difficultyState, setDifficultyState] = useState<difficulty>(difficulty.normal);
   const [modalActive, setModalActive] = useState<boolean>(false);
 
-  const generateLamps = (): LampEntity[] => {
+  const generateLamps = (setDifficulty: difficulty): LampEntity[] => {
     let min: number = 0;
     let max: number = 1;
-    switch(difficultyState) {
+    switch(setDifficulty) {
       case(difficulty.easy):
         min = 7;
         max = 15;  
@@ -44,7 +45,6 @@ function GameComponent(props: GameComponentProps) {
         max = 20;
         break;
     }
-    
     let lamps: LampEntity[] = []; 
     const lampsNumber = min + Math.floor(Math.random() * (max-min));
     for(let i=1; i<lampsNumber; i++) {
@@ -54,7 +54,7 @@ function GameComponent(props: GameComponentProps) {
     return lamps;
   }
 
-  const [lamps, setLamps] = useState<LampEntity[]>(generateLamps());
+  const [lamps, setLamps] = useState<LampEntity[]>(generateLamps(difficultyState));
   const [lampNum, setLampNum] = useState<number>(0);
   const [isNext, setIsNext] = useState<boolean>(false);
 
@@ -88,10 +88,10 @@ function GameComponent(props: GameComponentProps) {
   
   
   const handleResetLamps = useCallback(() => {
-    setLamps(generateLamps());
+    setLamps(generateLamps(difficultyState));
     setLampNum(0);
     handleUpdateLamp(lampNum);
-  },[lampNum, handleUpdateLamp])
+  },[lampNum, handleUpdateLamp, difficultyState])
   
   const handleSubmitAnswer = useCallback((answer: number): boolean => {
     if (answer === lamps.length) { 
@@ -101,25 +101,24 @@ function GameComponent(props: GameComponentProps) {
     return false;
   }, [lamps, handleResetLamps]);
 
-  const handleChangeDifficulty = useCallback((difficulty: difficulty) => {
+  const handleChangeDifficulty = useCallback((difficulty: difficulty): void => {
     setDifficultyState(difficulty);
     handleResetLamps();
-  }, [difficultyState]);
+  }, [handleResetLamps]);
 
   useEffect(() => {
     handleUpdateLamp(lampNum)
   }, [lampNum, handleUpdateLamp]);
 
-useEffect(() => {
-  console.log(`ans is ${ lamps.length }`);
-}, [lamps]);
+  useEffect(() => {
+    console.log(`ans is ${ lamps.length }`);
+  }, [lamps]);
 
   return (
     <>
     <div className="game">
       <HeaderComponent 
         difficultyState={ difficultyState }
-        setDifficultyState={ handleChangeDifficulty }
         showModal={ showModal }
       />
       <LampsContainerComponent 
@@ -135,19 +134,27 @@ useEffect(() => {
         submitAnswer={ handleSubmitAnswer }
        />
     </div>
-    <Routes location="/">
-      <Route path="/settings" 
-      children={( match: PathMatch) => {
-        return (
+    <Routes>
+      <Route 
+        path="settings" 
+        element={
           <SettingsComponent 
             active={modalActive} 
             setActive={ handleOnModalClick }  
             difficultyState={ difficultyState } 
             setDifficultyState={ handleChangeDifficulty }
             />
-        )
-      }}
-      ></Route>
+          }
+      />
+      <Route 
+        path="congrats"
+        element={
+            <CongratsComponent 
+              active={ modalActive } 
+              setActive={ setModalActive }
+            />
+        } 
+      />
     </Routes>
     </>
 
