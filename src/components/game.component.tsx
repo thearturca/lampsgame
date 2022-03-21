@@ -132,6 +132,7 @@ function GameComponent(props: GameComponentProps) {
         nextLamp={ handleNextLamp } 
         resetLamps={ handleResetLamps }
         submitAnswer={ handleSubmitAnswer }
+        showModal = { showModal }
        />
     </div>
     <Routes>
@@ -140,7 +141,7 @@ function GameComponent(props: GameComponentProps) {
         element={
           <SettingsComponent 
             active={modalActive} 
-            setActive={ handleOnModalClick }  
+            showModal={ handleOnModalClick }  
             difficultyState={ difficultyState } 
             setDifficultyState={ handleChangeDifficulty }
             />

@@ -5,7 +5,7 @@ import "./settings.component.css";
 
 export interface SettingsComponentProps {
     active: boolean;
-    setActive(isActive: boolean): void;
+    showModal(): void;
     difficultyState: difficulty;
     setDifficultyState(difficulty: difficulty): void;
 }
@@ -14,7 +14,7 @@ function SettingsComponent(props: SettingsComponentProps) {
     const navigate: NavigateFunction = useNavigate();
     const onClose = () => {
         navigate(-1);
-        props.setActive(false);
+        props.showModal();
     }
   return (
     <ModalComponent active={props.active} onClose={onClose}>

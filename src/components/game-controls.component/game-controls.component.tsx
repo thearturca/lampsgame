@@ -6,6 +6,7 @@ interface GameControlsComponentProps {
     nextLamp(): void;
     resetLamps(): void;
     submitAnswer(answer: number): boolean;
+    showModal(): void;
 }
 
 interface GameControlsComponentStates {
@@ -51,7 +52,7 @@ class GameControlsComponent extends React.Component<GameControlsComponentProps, 
     handleClickAnswer() {
         if (this.props.submitAnswer(parseInt( this.state.answer))) {
             this.setState({...this.state, hasWos: true, answer: ""});
-
+            this.props.showModal();
         }
     }
 
