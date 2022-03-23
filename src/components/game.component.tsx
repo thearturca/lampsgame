@@ -20,9 +20,8 @@ export enum difficulty {
 function GameComponent(props: GameComponentProps) {
     
   const [difficultyState, setDifficultyState] = useState<difficulty>(difficulty.normal);
-  const [modalActive, setModalActive] = useState<boolean>(false);
 
-  const generateLamps = (setDifficulty: difficulty): LampEntity[] => {
+  const generateLamps = (setDifficulty: difficulty, prevLampLength: number): LampEntity[] => {
     let min: number = 0;
     let max: number = 1;
     switch(setDifficulty) {
@@ -44,7 +43,10 @@ function GameComponent(props: GameComponentProps) {
         break;
     }
     let lamps: LampEntity[] = []; 
-    const lampsNumber = min + Math.floor(Math.random() * (max-min));
+    let lampsNumber: number = min + Math.floor(Math.random() * (max-min));
+    while (lampsNumber === prevLampLength) {
+
+    }
     for(let i=1; i<lampsNumber; i++) {
       const rng = Math.random();
       lamps.push(new LampEntity(rng > 0.5 ? true : false))
@@ -52,7 +54,7 @@ function GameComponent(props: GameComponentProps) {
     return lamps;
   }
 
-  const [lamps, setLamps] = useState<LampEntity[]>(generateLamps(difficultyState));
+  const [lamps, setLamps] = useState<LampEntity[]>(generateLamps(difficultyState, 0));
   const [lampNum, setLampNum] = useState<number>(0);
   const [isNext, setIsNext] = useState<boolean>(false);
 
@@ -78,7 +80,7 @@ function GameComponent(props: GameComponentProps) {
   
   
   const handleResetLamps = useCallback(() => {
-    setLamps(generateLamps(difficultyState));
+    setLamps(generateLamps(difficultyState, lamps.length));
     setLampNum(0);
     handleUpdateLamp(lampNum);
   },[lampNum, handleUpdateLamp, difficultyState])
