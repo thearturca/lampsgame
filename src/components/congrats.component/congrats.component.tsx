@@ -12,17 +12,12 @@ export interface CongratsComponentProps {
 function CongratsComponent(props: CongratsComponentProps) {
 
     const lampNum = useGetParameter(GET_PARAMS.lampNum);
-    const hasWon = useGetParameter(GET_PARAMS.hasWon);
     const navigate: NavigateFunction = useNavigate();
     
     const onClose = () => {
         navigate(-1);
     }
     
-    useEffect(() => {
-        if (hasWon !== "true") navigate(-1);
-    }, [])
-
     return (
         <ModalComponent active={ props.isOpened } onClose={ onClose }>
             <header className="modal-header">
@@ -31,7 +26,7 @@ function CongratsComponent(props: CongratsComponentProps) {
             </header>
             <main className="modal-main">
                 <span>
-                    Поздравляем, вам удалось посчитать количество лампочек!
+                    Поздравляем, вам удалось посчитать все { lampNum } лампочек!
                 </span>
                 <button className="Btn" onClick={ onClose }>Ура!</button>
             </main>

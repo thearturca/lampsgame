@@ -33,7 +33,7 @@ function GameControlsComponent (props: GameControlsComponentProps){
     const handleClickAnswer = () => {
         if (props.submitAnswer(parseInt(answer))) {
             setHasWon(true);
-            navigate(`?${GET_PARAMS.popup}=${GET_ENUMS.congrats}&${GET_PARAMS.lampNum}=${answer}&${GET_PARAMS.hasWon}=${hasWon}`)
+            navigate(`?${GET_PARAMS.popup}=${GET_ENUMS.congrats}&${GET_PARAMS.lampNum}=${answer}`)
             setAnswer("");
         }
     }
@@ -46,20 +46,20 @@ function GameControlsComponent (props: GameControlsComponentProps){
     return (
         <div className="game-controls" >
             <div className="lamps-controls">
-                <span onClick={() => handleClickPrevLamp()} className="prevBtn Btn">prev</span>
-                <span onClick={() => handleClickNextLamp()} className="nextBtn Btn">next</span>
+                <span onClick={ () => handleClickPrevLamp() } className="prevBtn Btn">prev</span>
+                <span onClick={ () => handleClickNextLamp() } className="nextBtn Btn">next</span>
             </div>
             <span className="text">{ "Посчитай сколько здесь лампочек" }</span>
             <div className="answer-form">
                 <input 
                     type="text" 
                     placeholder="Ответ" 
-                    onChange={(e) => handleAnswerOnChange(e)} 
+                    onChange={ (e) => handleAnswerOnChange(e) } 
                     className="answerInput" 
                     value={ answer }/> 
-                <button onClick={() => handleClickAnswer()} className="submitAnswerBtn Btn">Ответ</button>
+                <button onClick={ () => handleClickAnswer() } className="submitAnswerBtn Btn">Ответ</button>
             </div>
-            <span onClick={() => handleClickResetLamp()} className="resetBtn">reset</span>
+            <span onClick={ () => handleClickResetLamp() } className="resetBtn">reset</span>
         </div>
         )
     }
