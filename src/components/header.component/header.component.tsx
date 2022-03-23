@@ -1,23 +1,14 @@
 import { Link } from "react-router-dom";
-import { difficulty } from "../game.component";
+import { GET_ENUMS, GET_PARAMS } from "../../consts/router";
 import "./header.component.css"
 
-interface HeaderComponentProps {
-    showModal(): void;
-    difficultyState: difficulty;
-}
-
-function HeaderComponent(props: HeaderComponentProps) {
-
-    const handleOnClickSettingsBtn = () => {
-        props.showModal();
-    }
+function HeaderComponent() {
 
     return (
         <header className="game-header">
             <h1 className="game-title">Lamps Game</h1>
-            <Link to="/settings">
-            <button className="header-btn" onClick={ handleOnClickSettingsBtn }>Настройки</button>
+            <Link to={ `?${GET_PARAMS.popup}=${GET_ENUMS.settings}` }>
+            <button className="header-btn">Настройки</button>
             </Link>
         </header>  )
 }

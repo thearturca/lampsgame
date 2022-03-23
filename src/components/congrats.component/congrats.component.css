@@ -1,0 +1,14 @@
+span {
+    font-size: 22px;
+}
+.modal-main .Btn {
+    color: var(--background);
+    background-color: var(--text-primary);
+    width: 100%;
+    margin-top: 18px;
+    padding: 10px;
+}
+
+.modal-main .Btn:hover {
+    filter: brightness(70%);
+}

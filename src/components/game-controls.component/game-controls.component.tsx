@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import { NavigateFunction, useNavigate } from "react-router-dom";
+import { GET_ENUMS, GET_PARAMS } from "../../consts/router";
 import "./game-controls.component.css"
 
 interface GameControlsComponentProps {
@@ -6,82 +8,60 @@ interface GameControlsComponentProps {
     nextLamp(): void;
     resetLamps(): void;
     submitAnswer(answer: number): boolean;
-    showModal(): void;
 }
 
-interface GameControlsComponentStates {
-    answer: string;
-    hasWos: boolean;
-}
+function GameControlsComponent (props: GameControlsComponentProps){
+    
+    const navigate: NavigateFunction = useNavigate();
+    const [answer, setAnswer] = useState<string>("");
+    const [hasWon, setHasWon] = useState<boolean>(false);
 
-class GameControlsComponent extends React.Component<GameControlsComponentProps, GameControlsComponentStates>{
-    constructor(props: GameControlsComponentProps) {
-        super(props)
-        this.state  = {
-            answer: "",
-            hasWos: false
-        };
+    const handleClickPrevLamp = () => {
+        props.prevLamp();
     }
 
-    handleOnKeyDown(e:React.KeyboardEvent<HTMLDivElement>) {
-        e.preventDefault();
-        switch(e.key) {
-            case "ArrowLeft":
-                this.handleClickPrevLamp();
-                break;
+    const handleClickNextLamp = () => {
+        props.nextLamp();
+    }
 
-            case "ArrowRight":
-                this.handleClickNextLamp();
-                break;
+    const handleClickResetLamp = () => {
+        props.resetLamps();
+        setAnswer("");
+        setHasWon(false);
+    }
+
+    const handleClickAnswer = () => {
+        if (props.submitAnswer(parseInt(answer))) {
+            setHasWon(true);
+            navigate(`?${GET_PARAMS.popup}=${GET_ENUMS.congrats}&${GET_PARAMS.lampNum}=${answer}&${GET_PARAMS.hasWon}=${hasWon}`)
+            setAnswer("");
         }
     }
 
-    handleClickPrevLamp() {
-        this.props.prevLamp();
-    }
-
-    handleClickNextLamp() {
-        this.props.nextLamp();
-    }
-
-    handleClickResetLamp() {
-        this.props.resetLamps();
-        this.setState({...this.state, hasWos: false, answer: ""})
-    }
-
-    handleClickAnswer() {
-        if (this.props.submitAnswer(parseInt( this.state.answer))) {
-            this.setState({...this.state, hasWos: true, answer: ""});
-            this.props.showModal();
-        }
-    }
-
-    handleAnswerOnChange(e: React.ChangeEvent<HTMLInputElement> ) {
+    const handleAnswerOnChange = (e: React.ChangeEvent<HTMLInputElement> ) => {
         e.preventDefault();
-        this.setState({...this.state, answer: e.target.value});
+        setAnswer(e.target.value);
     }
 
-    render() {
-        return (
-            <div className="game-controls" >
-                <div className="lamps-controls">
-                    <span onClick={() => this.handleClickPrevLamp()} className="prevBtn Btn">prev</span>
-                    <span onClick={() => this.handleClickNextLamp()} className="nextBtn Btn">next</span>
-                </div>
-                <span className="text">{ "Посчитай сколько здесь лампочек" }</span>
-                <div className="answer-form">
-                    <input 
-                        type="text" 
-                        placeholder="Ответ" 
-                        onChange={(e) => this.handleAnswerOnChange(e)} 
-                        className="answerInput" 
-                        value={this.state.answer}/> 
-                    <button onClick={() => this.handleClickAnswer()} className="submitAnswerBtn Btn">Ответ</button>
-                </div>
-                <span onClick={() => this.handleClickResetLamp()} className="resetBtn">reset</span>
+    return (
+        <div className="game-controls" >
+            <div className="lamps-controls">
+                <span onClick={() => handleClickPrevLamp()} className="prevBtn Btn">prev</span>
+                <span onClick={() => handleClickNextLamp()} className="nextBtn Btn">next</span>
             </div>
-          )
+            <span className="text">{ "Посчитай сколько здесь лампочек" }</span>
+            <div className="answer-form">
+                <input 
+                    type="text" 
+                    placeholder="Ответ" 
+                    onChange={(e) => handleAnswerOnChange(e)} 
+                    className="answerInput" 
+                    value={ answer }/> 
+                <button onClick={() => handleClickAnswer()} className="submitAnswerBtn Btn">Ответ</button>
+            </div>
+            <span onClick={() => handleClickResetLamp()} className="resetBtn">reset</span>
+        </div>
+        )
     }
-}
 
 export default GameControlsComponent

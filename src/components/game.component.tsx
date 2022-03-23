@@ -1,13 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
 
 import GameControlsComponent from "./game-controls.component/game-controls.component"
 import { LampEntity } from "./assets.components/lamp.component/lamp.entity";
 import LampsContainerComponent from "./lamps-container.component/lamps-container.component";
 import HeaderComponent from "./header.component/header.component";
-import SettingsComponent from "./settings.component/settings.component";
+import GetParameterPopups from "./get-parameter.popups";
 import "./game.component.css";
-import CongratsComponent from "./congrats.component/congrats.component";
 
 interface GameComponentProps {
   switchTheme(theme: string): void;
@@ -58,14 +56,6 @@ function GameComponent(props: GameComponentProps) {
   const [lampNum, setLampNum] = useState<number>(0);
   const [isNext, setIsNext] = useState<boolean>(false);
 
-  const handleOnModalClick = () => {
-    setModalActive(false);
-  };
-
-  const showModal = () => {
-    setModalActive(true);
-  }
-  
   const handleUpdateLamp = useCallback((i: number) => {
     props.switchTheme(lamps[i].isOn ? "light" : "dark")
   }, [lamps, props]);
@@ -101,10 +91,9 @@ function GameComponent(props: GameComponentProps) {
     return false;
   }, [lamps, handleResetLamps]);
 
-  const handleChangeDifficulty = useCallback((difficulty: difficulty): void => {
-    setDifficultyState(difficulty);
+  useEffect(()=> {
     handleResetLamps();
-  }, [handleResetLamps]);
+  }, [difficultyState])
 
   useEffect(() => {
     handleUpdateLamp(lampNum)
@@ -117,10 +106,7 @@ function GameComponent(props: GameComponentProps) {
   return (
     <>
     <div className="game">
-      <HeaderComponent 
-        difficultyState={ difficultyState }
-        showModal={ showModal }
-      />
+      <HeaderComponent />
       <LampsContainerComponent 
         isNext={ isNext } 
         lamps={ lamps } 
@@ -132,33 +118,10 @@ function GameComponent(props: GameComponentProps) {
         nextLamp={ handleNextLamp } 
         resetLamps={ handleResetLamps }
         submitAnswer={ handleSubmitAnswer }
-        showModal = { showModal }
        />
     </div>
-    <Routes>
-      <Route 
-        path="settings" 
-        element={
-          <SettingsComponent 
-            active={modalActive} 
-            showModal={ handleOnModalClick }  
-            difficultyState={ difficultyState } 
-            setDifficultyState={ handleChangeDifficulty }
-            />
-          }
-      />
-      <Route 
-        path="congrats"
-        element={
-            <CongratsComponent 
-              active={ modalActive } 
-              setActive={ setModalActive }
-            />
-        } 
-      />
-    </Routes>
+    <GetParameterPopups difficultyState={ difficultyState } setDiffcultyState={ setDifficultyState }></GetParameterPopups>
     </>
-
   )
 }
 

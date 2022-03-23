@@ -61,6 +61,8 @@
 
 .modal-main {
     margin-top: 30px;
+    display: flex;
+    flex-direction: column;
 }
 
 @keyframes modal-overlay {

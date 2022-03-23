@@ -4,8 +4,7 @@ import ModalComponent from "../modal.component/modal.component";
 import "./settings.component.css";
 
 export interface SettingsComponentProps {
-    active: boolean;
-    showModal(): void;
+    isOpened: boolean;
     difficultyState: difficulty;
     setDifficultyState(difficulty: difficulty): void;
 }
@@ -14,10 +13,9 @@ function SettingsComponent(props: SettingsComponentProps) {
     const navigate: NavigateFunction = useNavigate();
     const onClose = () => {
         navigate(-1);
-        props.showModal();
     }
   return (
-    <ModalComponent active={props.active} onClose={onClose}>
+    <ModalComponent active={ props.isOpened } onClose={onClose}>
             <header className="modal-header">
                 <h1>Настройки</h1>
                 <button className="btn-close" onClick={ onClose }>X</button>
