@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "./static/css/main.584e0c67.css",
+    "main.js": "./static/js/main.3472dc03.js",
+    "static/js/787.5db047f9.chunk.js": "./static/js/787.5db047f9.chunk.js",
+    "static/media/lamp-off.png": "./static/media/lamp-off.42003caf3c13f4fd2588.png",
+    "static/media/lamp-on.png": "./static/media/lamp-on.35d55d873b34e06ecf82.png",
+    "index.html": "./index.html",
+    "main.584e0c67.css.map": "./static/css/main.584e0c67.css.map",
+    "main.3472dc03.js.map": "./static/js/main.3472dc03.js.map",
+    "787.5db047f9.chunk.js.map": "./static/js/787.5db047f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.584e0c67.css",
+    "static/js/main.3472dc03.js"
+  ]
+}
