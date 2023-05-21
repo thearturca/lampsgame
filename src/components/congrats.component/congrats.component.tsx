@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { GET_PARAMS } from "../../consts/router";
 import useGetParameter from "../../hooks/useGetParameter";

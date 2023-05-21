@@ -14,7 +14,7 @@ function GameControlsComponent (props: GameControlsComponentProps){
     
     const navigate: NavigateFunction = useNavigate();
     const [answer, setAnswer] = useState<string>("");
-    const [hasWon, setHasWon] = useState<boolean>(false);
+    const [, setHasWon] = useState<boolean>(false);
 
     const handleClickPrevLamp = () => {
         props.prevLamp();
